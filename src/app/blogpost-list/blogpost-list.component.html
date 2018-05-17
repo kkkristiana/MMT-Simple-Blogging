@@ -1,0 +1,55 @@
+<button class="padded-container" type="button" mat-raised-button color="primary" (click)="addNewPost()">Add New Post</button>
+<app-blogpost-add *ngIf="isAddingNewPost || selectedBlogPost" [post]="selectedBlogPost" (postEdited)="editPost($event)"></app-blogpost-add>
+    <mat-table #table [dataSource]="dataSource" class="example-container padded-container mat-elevation-z8">
+    <ng-container class="padded-text" matColumnDef="createdAtDate">
+        <mat-header-cell *matHeaderCellDef> Created At</mat-header-cell>
+        <mat-cell *matCellDef="let blogPost">{{blogPost.createdAtDate.toLocaleDateString('en-us') }}</mat-cell>
+    </ng-container>
+
+    <ng-container class="padded-text" matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef >Title</mat-header-cell>
+        <mat-cell *matCellDef="let blogPost">{{blogPost.title | slice:0:150}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="text">
+        <mat-header-cell *matHeaderCellDef>Content</mat-header-cell>
+        <mat-cell  class="padded-text" *matCellDef="let blogPost">{{blogPost.content | slice:0:150}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell class="padded-text" *matCellDef="let blogPost">{{blogPost.status}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let post">
+                <button mat-button (click)="select(post)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let post">
+                <button mat-button (click)="onDelete(post.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<ng-container>
+        <mat-slide-toggle [(ngModel)]="showingOnlyActive" (change)='onToggle($event)'
+        class="example-margin"
+        color="primary">
+        Show only active posts
+        </mat-slide-toggle>
+        <mat-checkbox class="example-margin" color="primary" [(ngModel)]="showingLast15" (change)="onCheckChange($event)">Show only last 15 posts</mat-checkbox>
+</ng-container>
+
+

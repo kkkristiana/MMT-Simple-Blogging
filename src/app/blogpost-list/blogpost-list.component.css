@@ -1,0 +1,36 @@
+.mat-header-cell.mat-sort-header-sorted {
+    color: black;
+  }
+
+.example-container {
+  width: 90.0%;
+}
+
+.min-width-container {
+  min-width: 100px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.padded-container {
+  padding: 10px;
+  margin: 10px;
+}
+
+.padded-text {
+  padding: 2px;
+}
+
+.mat-column-text {
+flex: 0 0 50%;
+}
+
+.mat-column-edit {
+  flex: 0 0 7%;
+}
+
+.mat-column-delete {
+  flex: 0 0 7%;
+}

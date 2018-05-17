@@ -1,0 +1,22 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()" class="example-container mat-elevation-z8">
+  <mat-form-field class="example-full-width">
+    <input class="author-field" matInput required placeholder="Title" name="title" [(ngModel)]="editedPost.title"/>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input class="author-field" matInput required placeholder="Author" name="author" [(ngModel)]="editedPost.author">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" required placeholder="Choose a date" name="date" [(ngModel)]="editedPost.createdAtDate" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <textarea class="subject-field" matInput required placeholder="Your story..." name="text" [(ngModel)]="editedPost.content"></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <input class="author-field" matInput placeholder="URL (Optional)" name="url" [(ngModel)]="editedPost.imageUrl">
+    </mat-form-field>
+    <mat-slide-toggle color="primary" name="isActive" [(ngModel)]="editedPost.status" (change)='onToggle($event)'>Active</mat-slide-toggle>
+    <button type="submit" mat-raised-button color="primary"
+    [disabled]="form.pristine || form.invalid">Submit</button>
+</form>
